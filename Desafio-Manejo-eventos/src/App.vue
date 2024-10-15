@@ -1,30 +1,35 @@
 <script>
-// Importar el componente del formulario
 import Formulario from './components/Formulario.vue';
+import Tablero from './components/Tablero.vue';
 
 export default {
   components: {
-    Formulario
+    Formulario,
+    Tablero
+  },
+  data() {
+    return {
+      pacientes: []
+    };
+  },
+  methods: {
+    /**funcion para agregar pacientes al array*/
+    agregarPaciente(paciente) {
+      this.pacientes.push(paciente);
+    }
   }
 };
 </script>
+
 <template>
-  <div class="container mt-5  border border-secondary p-3 rounded">
-    <Formulario/>
+  <div class="container mt-4 ">
+    <div class="border border-secondary p-3 rounded">
+      <formulario @nuevoPaciente="agregarPaciente" /> <!--emite el paciente-->
+    </div>
+    <div>
+      <tablero :pacientes="pacientes" /> <!--envia el arreglo paciente a el tablero-->
+    </div>
   </div>
 </template>
-
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
 </style>
